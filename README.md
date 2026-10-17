@@ -16,6 +16,7 @@ Every item is independent: **an item with no value is not rendered** — there a
 - **Branch / tag** — only in a git repository. Current branch; on a detached HEAD it shows the tag or short SHA; an extra tag chip appears when HEAD is tagged
 - **Change counts** — only when the working tree is dirty: staged (`+`), unstaged (`~`), untracked (`?`), conflicted (`!`), ahead (`↑`) / behind (`↓`)
 - **Project environment** — only for detected markers: `.nvmrc` / `.node-version` / `.tool-versions` / `mise.toml` / `package.json engines` (node), `.python-version` / `pyproject.toml` / `.venv` (python), `go.mod`, `Cargo.toml`, `pom.xml`, `Gemfile`, lockfiles (`pnpm`/`yarn`/`npm`/`bun`), Docker files
+- **Account balance** — the DeepSeek Platform wallet balance (recharge and bonus wallets), read through DSH's own account API. It costs no tokens; the plugin refreshes it every 10 minutes and hides the chip when you are signed out or the account read fails. Clicking it opens the Platform usage / top-up page
 - **Pull request** — shown when the branch has a PR (number, state, draft, and an Actions status dot: `green` all pass, `amber` pending, `red` failure) or, on a GitHub branch without one, as `+ PR` which opens the GitHub compare page to create it. Non-GitHub remotes never show a PR item.
 
 ## What you can click
@@ -29,10 +30,21 @@ Every item is independent: **an item with no value is not rendered** — there a
 
 Failures are visible instead of silent: the pill shows `PR ?` with the `gh` error in its tooltip, and the panel explains what to check.
 
+## Usage vs. balance (what is free)
+
+| Data | Source | Cost | In the pill |
+|---|---|---|---|
+| Account balance | DSH `remote.account.getBalance` → Platform `get_user_summary` | **free** (a read, no token billing) | `¥12.34`, refreshed every 10 min |
+| Session token usage | DSH token meter (local) | **free** | already rendered by the built-in composer stats next to the pill |
+| Account-level usage history | Platform usage page (login-gated web session) | not exposed by any free public API | not shown; the balance chip links to the Platform usage page instead |
+
+Account-level usage cannot be fetched without scraping the login-gated Platform web session, so this plugin does not attempt it. The balance chip is also hidden when the app is configured with an API key only (no DeepSeek account sign-in), because the Platform summary endpoint needs the account grant.
+
 ## Requirements
 
 - `git` on `PATH`
 - `gh` (GitHub CLI), authenticated, for PR status
+- A signed-in DeepSeek account for the balance chip (API-key-only setups simply hide it)
 - DSH desktop `>= 0.2.0-rc.2` (or a web build with the `conversation.composer.dock` slot)
 
 ## Install
