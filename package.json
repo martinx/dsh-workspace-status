@@ -1,6 +1,6 @@
 {
   "name": "dsh-workspace-status",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": true,
   "description": "Composer status bar for DeepSeek Harness: path, git branch/tag, changes, environment, account balance, and interactive PR/Actions panels.",
   "type": "module",

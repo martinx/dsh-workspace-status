@@ -16,7 +16,7 @@ Every item is independent: **an item with no value is not rendered** — there a
 - **Branch / tag** — only in a git repository. Current branch; on a detached HEAD it shows the tag or short SHA; an extra tag chip appears when HEAD is tagged
 - **Change counts** — only when the working tree is dirty: staged (`+`), unstaged (`~`), untracked (`?`), conflicted (`!`), ahead (`↑`) / behind (`↓`)
 - **Project environment** — only for detected markers: `.nvmrc` / `.node-version` / `.tool-versions` / `mise.toml` / `package.json engines` (node), `.python-version` / `pyproject.toml` / `.venv` (python), `go.mod`, `Cargo.toml`, `pom.xml`, `Gemfile`, lockfiles (`pnpm`/`yarn`/`npm`/`bun`), Docker files
-- **Account balance** — the DeepSeek Platform wallet balance (recharge and bonus wallets), read through DSH's own account API. It costs no tokens; the plugin refreshes it every 10 minutes and hides the chip when you are signed out or the account read fails. Clicking it opens the Platform usage / top-up page
+- **Account balance** — the DeepSeek Platform wallet balance (recharge and bonus wallets), read through a host-side route that prefers DSH's account service and falls back to the stored Platform grant. It costs no tokens; the plugin refreshes it every 10 minutes and hides the chip when you are signed out or the account read fails. Clicking it opens the Platform usage / top-up page
 - **Pull request** — shown when the branch has a PR (number, state, draft, and an Actions status dot: `green` all pass, `amber` pending, `red` failure) or, on a GitHub branch without one, as `+ PR` which opens the GitHub compare page to create it. Non-GitHub remotes never show a PR item.
 
 ## What you can click
