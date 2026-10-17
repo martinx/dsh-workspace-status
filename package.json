@@ -1,8 +1,8 @@
 {
   "name": "dsh-workspace-status",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
-  "description": "Composer-dock pill with interactive git branch switching, changed-file diffs, and GitHub PR/Actions status for DeepSeek Harness.",
+  "description": "A bottom-left workspace status pill for DeepSeek Harness: path, git branch/tag, changes, project environment, and interactive PR/Actions panels.",
   "type": "module",
   "main": "lib/index.js",
   "exports": {

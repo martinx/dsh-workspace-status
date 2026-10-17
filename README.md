@@ -3,13 +3,17 @@
 An interactive composer-dock pill for [DeepSeek Harness](https://github.com/deepseek-ai) that shows the current workspace's Git state and lets you act on it without leaving the chat.
 
 ```
-⎇ main · +2 ~1 ?3 · ↑1 ↓2 · #123 open
+~/Projects/demo · ⎇ main · +2 ~1 ?3 · node 22 · pnpm · #123 open
 ```
+
+The pill sits at the **bottom-left of the conversation area**, not in the centered composer dock, so the centered run/usage stats stay untouched.
 
 ## What it shows
 
-- **Branch** — current branch, detached-HEAD warning, ahead/behind upstream
-- **Change counts** — staged (`+`), unstaged (`~`), untracked (`?`), conflicted (`!`)
+- **Path** — the workspace path with `~` abbreviation; long paths collapse to the last two directories (`…/Projects/demo`), full path in the tooltip
+- **Branch / tag** — current branch; on a detached HEAD it shows the tag or short SHA; an extra tag chip appears when HEAD is tagged
+- **Change counts** — staged (`+`), unstaged (`~`), untracked (`?`), conflicted (`!`), ahead (`↑`) / behind (`↓`)
+- **Project environment** — detected from well-known files: `.nvmrc` / `.node-version` / `.tool-versions` / `mise.toml` / `package.json engines` (node), `.python-version` / `pyproject.toml` / `.venv` (python), `go.mod`, `Cargo.toml`, `pom.xml`, `Gemfile`, lockfiles (`pnpm`/`yarn`/`npm`/`bun`), Docker files. Extra markers collapse into `+N` with a tooltip when space is tight
 - **Pull request** — for `github.com` remotes: number, state, draft; a status dot summarizes GitHub Actions (`green` all pass, `amber` pending, `red` failure); `+ PR` when the branch has none
 
 ## What you can click
