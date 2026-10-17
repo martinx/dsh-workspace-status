@@ -6,15 +6,17 @@ An interactive composer-dock pill for [DeepSeek Harness](https://github.com/deep
 ~/Projects/demo · ⎇ main · +2 ~1 ?3 · node 22 · pnpm · #123 open
 ```
 
-The pill sits at the **bottom-left of the conversation area**, not in the centered composer dock, so the centered run/usage stats stay untouched.
+The pill sits in the row **directly under the input box**, as its first item; the plugin left-aligns that row to the dialog's left edge (the row is centered by the core composer CSS), so it reads like a status bar under the conversation input.
 
 ## What it shows
 
-- **Path** — the workspace path with `~` abbreviation; long paths collapse to the last two directories (`…/Projects/demo`), full path in the tooltip
-- **Branch / tag** — current branch; on a detached HEAD it shows the tag or short SHA; an extra tag chip appears when HEAD is tagged
-- **Change counts** — staged (`+`), unstaged (`~`), untracked (`?`), conflicted (`!`), ahead (`↑`) / behind (`↓`)
-- **Project environment** — detected from well-known files: `.nvmrc` / `.node-version` / `.tool-versions` / `mise.toml` / `package.json engines` (node), `.python-version` / `pyproject.toml` / `.venv` (python), `go.mod`, `Cargo.toml`, `pom.xml`, `Gemfile`, lockfiles (`pnpm`/`yarn`/`npm`/`bun`), Docker files. Extra markers collapse into `+N` with a tooltip when space is tight
-- **Pull request** — for `github.com` remotes: number, state, draft; a status dot summarizes GitHub Actions (`green` all pass, `amber` pending, `red` failure); `+ PR` when the branch has none
+Every item is independent: **an item with no value is not rendered** — there are no placeholders, no `clean`, no empty PR chip.
+
+- **Path** — always shown. `~` abbreviation; long paths collapse to the last two directories (`…/Projects/demo`), full path in the tooltip. Works for non-git directories too
+- **Branch / tag** — only in a git repository. Current branch; on a detached HEAD it shows the tag or short SHA; an extra tag chip appears when HEAD is tagged
+- **Change counts** — only when the working tree is dirty: staged (`+`), unstaged (`~`), untracked (`?`), conflicted (`!`), ahead (`↑`) / behind (`↓`)
+- **Project environment** — only for detected markers: `.nvmrc` / `.node-version` / `.tool-versions` / `mise.toml` / `package.json engines` (node), `.python-version` / `pyproject.toml` / `.venv` (python), `go.mod`, `Cargo.toml`, `pom.xml`, `Gemfile`, lockfiles (`pnpm`/`yarn`/`npm`/`bun`), Docker files
+- **Pull request** — shown when the branch has a PR (number, state, draft, and an Actions status dot: `green` all pass, `amber` pending, `red` failure) or, on a GitHub branch without one, as `+ PR` which opens the GitHub compare page to create it. Non-GitHub remotes never show a PR item.
 
 ## What you can click
 
