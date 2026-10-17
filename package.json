@@ -1,6 +1,6 @@
 {
   "name": "dsh-workspace-status",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Composer-dock pill showing the workspace git branch, change counts, ahead/behind and GitHub PR status for DeepSeek Harness.",
   "type": "module",
